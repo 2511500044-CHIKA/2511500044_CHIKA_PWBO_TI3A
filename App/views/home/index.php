@@ -1,10 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Halaman Home</title>
-</head>
-<body>
-    <h1>Selamat Datang di website saya</h1>
-</body>
-</html>
+<div class="container">
+    <div class="jumbotron">
+        <h1 class="display-4">Selamat Datang di Website Saya</h1>
+        <p class="lead">This is a simple hero unit,
+             a simple jumbotron-style component for calling extra attention to 
+             featured content or information.</p>
+             <hr clas s="my-4">
+             <p>It uses utility classes for typography and spacing to spac
+                 content out within the larger container.</p>
+             <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+
+</div>
