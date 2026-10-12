@@ -1,28 +1,22 @@
 <?php
-class Mahasiswa_model {
-    private $mhs = [
-        [
-            "nama" => "Chika",
-            "nim" => "2511500044",
-            "email" => "2411500044@mahasiswa.atmaluhur.ac.id",
-            "jurusan" => "Teknik Informatika"
-        ],
-        [
-            "nama" => "zayin",
-            "nim" => "2511500044",
-            "email" => "2411500044@mahasiswa.atmaluhur.ac.id",
-            "jurusan" => "Teknik Informatika"
-        ],
-        [
-            "nama" => "billa",
-            "nim" => "2511500044",
-            "email" => "2411500044@mahasiswa.atmaluhur.ac.id",
-            "jurusan" => "Teknik Informatika"
-        ],
-    ];
+    class Mahasiswa_model {
+        private $table = 'mahasiswa';
+        private $db;
 
-    public function getAllMahasiswa()
-    {
-        return $this->mhs;
+        public function __construct()
+         {
+            $this->db = new Database;
+         }
+               public function getAllMahasiswa()
+               {
+                  $this->db->query('SELECT * FROM ' . $this->table);
+                  return $this->db->resultSet();
+               }
+            
+         public function getMahasiswaById($id)
+         {
+            $this->db->query('SELECT * FROM ' . $this->table. ' where id=:id');
+            $this->db->bind(':id', $id);
+            return $this->db->single();
+         }
     }
-}
