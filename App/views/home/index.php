@@ -1,9 +1,7 @@
 <div class="container">
     <div class="jumbotron">
         <h1 class="display-4">Selamat Datang di Website Saya</h1>
-        <p class="lead">This is a simple hero unit,
-             a simple jumbotron-style component for calling extra attention to 
-             featured content or information.</p>
+        <p class="lead">Halo, nama saya <?php echo $data['nama']; ?></p>
              <hr clas s="my-4">
              <p>It uses utility classes for typography and spacing to spac
                  content out within the larger container.</p>
