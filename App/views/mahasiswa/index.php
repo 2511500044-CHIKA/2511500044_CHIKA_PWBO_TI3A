@@ -1,5 +1,4 @@
-<?php /** @var array $data */ ?>
-<div class="container mt-4">
+
     <div class="row">
         <div class="col-lg-6">
             <?php flasher::flash(); ?>
@@ -8,7 +7,8 @@
     <div class="row">
         <div class="col-lg-6">
             <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+            <button type="button" class="btn btn-primary tombolTambahData" data-toggle
+            ="modal" data-target="#exampleModal">
                 Tambah Data Mahasiswa
             </button>
             <br><br>
@@ -17,12 +17,23 @@
                 <?php foreach ($data['mhs'] as $mhs) : ?>
                     <li class="list-group-item">
                         <?php echo $mhs['nama']; ?>
-                        <a href="<?php echo BASEURL; ?>/mahasiswa/hapus/<?php echo $mhs['id']; ?>" 
-                        class="badge badge-danger float-right ml-1" onclick="return confirm('Yakin?');">
+                        <a href="<?php echo BASEURL; ?>/mahasiswa/
+                        hapus/<?php echo $mhs['id']; ?>" 
+                        class="badge badge-danger
+                        float-right ml-1" onclick=
+                        "return confirm('Yakin?');">
                             hapus
                         </a>
-                        <a href="<?php echo BASEURL; ?>/mahasiswa/detail/<?php echo $mhs['id']; ?>" 
-                        class="badge badge-primary float-right ml-1">
+                        <a href="<?php echo BASEURL; ?>/mahasiswa/
+                        detail/<?php echo $mhs['id']; ?>"class="badge
+                        badge-success float-right ml-1 tampilModalUbah"
+                        data-toggle="modal" data-target="#formModal" data-id='<?php echo
+                        $mhs['id']; ?>'>
+                            ubah
+                        </a>
+                        <a href="<?php echo BASEURL; ?>/mahasiswa/
+                        detail/<?php echo $mhs['id']; ?>"class="badge
+                        badge-primary float-right ml-1">
                             detail
                         </a>
                     </li>
@@ -42,7 +53,9 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="<?php echo BASEURL; ?>/mahasiswa/tambah" method="post">
+                    <form action="<?php echo BASEURL; ?>/mahasiswa/tambah" 
+                    method="post">
+                    <input type="hidden" name="id" id="id">
                         <div class="form-group">
                             <label for="nama">Nama</label>
                             <input type="text" class="form-control" id="nama" name="nama">
@@ -63,14 +76,15 @@
                                 <option value="Bisnis Digital">Bisnis Digital</option>
                             </select>
                         </div>
+                    </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary">Tambah Data</button>
                 </div>
             </div>
-        </div><?php /** @var array $data */ ?>
-<div class="container mt-4">
+        </div>
+        <div class="container mt-4">
     <div class="row">
         <div class="col-lg-6">
             <?php flasher::flash(); ?>
