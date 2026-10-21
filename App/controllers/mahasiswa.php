@@ -1,56 +1,62 @@
 <?php
-class Mahasiswa extends Controllers {
-    public function index() {
+class Mahasiswa extends Controllers
+{
+    public function index()
+    {
         $data['judul'] = 'Daftar Mahasiswa';
         $data['mhs'] = $this->model('Mahasiswa_model')->getAllMahasiswa();
+
         $this->view('templates/header', $data);
         $this->view('mahasiswa/index', $data);
         $this->view('templates/footer');
     }
-    public function detail($id) {
+    public function detail($id)
+    {
         $data['judul'] = 'Detail Mahasiswa';
         $data['mhs'] = $this->model('Mahasiswa_model')->getMahasiswaById($id);
+
         $this->view('templates/header', $data);
         $this->view('mahasiswa/detail', $data);
         $this->view('templates/footer');
     }
-    public function tambah() {
+    public function tambah()
+    {
+
         if ($this->model('Mahasiswa_model')->tambahDataMahasiswa($_POST) > 0) {
-            flasher::setFlash('berhasil', 'ditambahkan', 'success');
+            Flasher::setFlash('berhasil', 'ditambahkan', 'success');
+        } else {
+            Flasher::setFlash('gagal', 'ditambahkan', 'danger');
+        }
+
+        header('Location: ' . BASEURL . '/mahasiswa');
+        exit;
+    }
+
+    public function hapus($id)
+    {
+        if ($this->model('Mahasiswa_model')->hapusDataMahasiswa($id) > 0) {
+            Flasher::setFlash('berhasil', 'dihapus', 'success');
             header('Location: ' . BASEURL . '/mahasiswa');
             exit;
         } else {
-            flasher::setFlash('gagal', 'ditambahkan', 'danger');
+            Flasher::setFlash('gagal', 'dihapus', 'danger');
             header('Location: ' . BASEURL . '/mahasiswa');
             exit;
         }
     }
-    public function hapus($id) 
+    public function getubah()
     {
-        if ($this->model('Mahasiswa_model')->hapusDataMahasiswa($id) >
-         0) {
-            flasher::setFlash(' berhasil', 'dihapus', 'success');
-            header('Location: ' . BASEURL . '/mahasiswa');
-            exit;
-        } else {
-            flasher::setFlash(' gagal', 'dihapus', 'danger');
-            header('Location: ' . BASEURL . '/mahasiswa');
-            exit;
-        }
+        echo json_encode($this->model('Mahasiswa_model')->getMahasiswaById($_POST['id']));
     }
-    public function getubah() 
-    {
-        echo json_encode($this->model('Mahasiswa_model')->
-        getMahasiswaById($_POST['id']));
-    }
-    public function ubah() 
+    public function ubah()
     {
         if ($this->model('Mahasiswa_model')->ubahDataMahasiswa($_POST) > 0) {
-            flasher::setFlash('berhasil', 'diubah', 'success');
+            Flasher::setFlash('berhasil', 'diubah', 'success');
             header('Location: ' . BASEURL . '/mahasiswa');
             exit;
+            
         } else {
-            flasher::setFlash('gagal', 'diubah', 'danger');
+            Flasher::setFlash('gagal', 'diubah', 'danger');
             header('Location: ' . BASEURL . '/mahasiswa');
             exit;
         }
