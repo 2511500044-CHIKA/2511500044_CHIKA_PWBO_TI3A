@@ -7,12 +7,12 @@ $(function () {
     $('.tampilModalUbah').on('click', function () {
         $('#judulModal').html('Ubah Data Mahasiswa');
         $('.modal-footer button[type=submit]').html('Ubah Data');
-       $('.modal-body form').attr('action', 'http://localhost/CHIKA_PWBO_2511500044/mahasiswa/ubah');
+     $('.modal-body form').attr('action', 'http://localhost/CHIKA_PWBO_2511500044/Public/mahasiswa/ubah');
 
         const id = $(this).data('id');
 
         $.ajax({
-            url: 'http://localhost/CHIKA_PWBO_2511500044/mahasiswa/getubah',
+           url: 'http://localhost/CHIKA_PWBO_2511500044/Public/mahasiswa/getubah',
             data: { id: id },
             method: 'post',
             dataType: 'json',

@@ -51,8 +51,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="<?= BASEURL; ?>/mahasiswa/tambah" method="POST">
-                <input type="hidden" name="id" id="id">
+            <form action="<?= BASEURL; ?>/mahasiswa/tambah" method="POST" id="forMahasiswa">
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="nama">Nama</label>
