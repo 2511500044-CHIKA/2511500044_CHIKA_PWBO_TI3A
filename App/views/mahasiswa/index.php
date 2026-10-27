@@ -53,6 +53,7 @@
                 </button>
             </div>
             <form action="<?= BASEURL; ?>/mahasiswa/tambah" method="POST" id="forMahasiswa">
+                <input type="hidden" name="id" id="id">
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="nama">Nama</label>
