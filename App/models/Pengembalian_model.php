@@ -1,12 +1,13 @@
+
 <?php
-class Mahasiswa_model
+
+class Pengembalian_model
 {
-    private $table = 'Pengembalian Buku';
-    private $db; // database handler
+    private $table = '`Pengembalian Buku`';
+    private $db;
 
     public function __construct()
     {
-
         $this->db = new Database;
     }
 
@@ -15,31 +16,35 @@ class Mahasiswa_model
         $this->db->query('SELECT * FROM ' . $this->table);
         return $this->db->resultSet();
     }
-    public function getPengembalianById($id)
+
+    public function getPengembalianById($Kd_kembalian044)
     {
-        $this->db->query('SELECT * FROM ' . $this->table . ' WHERE id=:id
-            ');
-        $this->db->bind('id', $id);
+        $this->db->query(
+            'SELECT * FROM ' . $this->table .
+                ' WHERE Kd_kembalian044 = :kode'
+        );
+
+        $this->db->bind('kode', $Kd_kembalian044);
+
         return $this->db->single();
     }
 
     public function tambahDataPengembalian($data)
     {
-
         $query = "INSERT INTO $this->table
-               (Kd_kembali044, NimMhs044, NmMhs044, NmBuku044, JumBuku044, TglKembali044, Denda044)
-               VALUES
-               (:Kd_kembali044, :NimMhs044, :NmMhs044, :NmBuku044, :JumBuku044, :TglKembali044, :Denda044)";
+            (Kd_kembalian044, NimMhs044, NmMhs044, NmBuku044,
+             JumBuku044, TglKembali044, Denda044)
+            VALUES
+            (:kode, :nim, :nama, :buku, :jumlah, :tanggal, :denda)";
 
         $this->db->query($query);
-        $this->db->bind('Kd_kembali044', $data['Kd_kembali044']);
-        $this->db->bind('NimMhs044', $data['NimMhs044']);
-        $this->db->bind('NmMhs044', $data['NmMhs044']);
-        $this->db->bind('NmBuku044', $data['NmBuku044']);
-        $this->db->bind('JumBuku044', $data['JumBuku044']);
-        $this->db->bind('TglKembali044', $data['TglKembali044']);
-        $this->db->bind('Denda044', $data['Denda044']);
-
+        $this->db->bind('kode', $data['Kd_kembalian044']);
+        $this->db->bind('nim', $data['NimMhs044']);
+        $this->db->bind('nama', $data['NmMhs044']);
+        $this->db->bind('buku', $data['NmBuku044']);
+        $this->db->bind('jumlah', $data['JumBuku044']);
+        $this->db->bind('tanggal', $data['TglKembali044']);
+        $this->db->bind('denda', $data['Denda044']);
 
         $this->db->execute();
 
@@ -48,36 +53,35 @@ class Mahasiswa_model
 
     public function hapusDataPengembalian($id)
     {
-        $query = "DELETE FROM $this->table WHERE id = :id";
-        $this->db->query($query);
-        $this->db->bind('id', $id);
+        $query = "DELETE FROM $this->table
+                  WHERE Kd_kembalian044 = :kode";
 
+        $this->db->query($query);
+        $this->db->bind('kode', $id);
         $this->db->execute();
 
         return $this->db->rowCount();
     }
+
     public function ubahDataPengembalian($data)
     {
         $query = "UPDATE $this->table SET
-            Kd_kembali044 = :Kd_kembali044,
-            NimMhs044 = :NimMhs044,
-            NmMhs044 = :NmMhs044,
-            NmBuku044 = :NmBuku044
-            JumBuku044 = :JumBuku044
-            TglKembali044 = :TglKembali044
-            Denda044 = : Denda044
-            WHERE id = :id";
+            NimMhs044 = :nim,
+            NmMhs044 = :nama,
+            NmBuku044 = :buku,
+            JumBuku044 = :jumlah,
+            TglKembali044 = :tanggal,
+            Denda044 = :denda
+            WHERE Kd_kembalian044 = :kode";
 
         $this->db->query($query);
-        $this->db->bind('Kd_kembali044', $data['Kd_kembali044']);
-        $this->db->bind('NimMhs044', $data['NimMhs044']);
-        $this->db->bind('NmMhs044', $data['NmMhs044']);
-        $this->db->bind('NmBuku044', $data['NmBuku044']);
-        $this->db->bind('NmBuku044', $data['NmBuku044']);
-        $this->db->bind('JumBuku044', $data['JumBuku044']);
-        $this->db->bind('TglKembali044', $data['TglKembali044']);
-        $this->db->bind('Denda044', $data['Denda044']);
-        $this->db->bind('id', $data['id']);
+        $this->db->bind('nim', $data['NimMhs044']);
+        $this->db->bind('nama', $data['NmMhs044']);
+        $this->db->bind('buku', $data['NmBuku044']);
+        $this->db->bind('jumlah', $data['JumBuku044']);
+        $this->db->bind('tanggal', $data['TglKembali044']);
+        $this->db->bind('denda', $data['Denda044']);
+        $this->db->bind('kode', $data['Kd_kembalian044']);
 
         $this->db->execute();
 
