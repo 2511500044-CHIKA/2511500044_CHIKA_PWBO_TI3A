@@ -19,7 +19,7 @@
                         <a href="<?php echo BASEURL; ?>/mahasiswa/hapus/<?php echo $mhs['id']; ?>" class="badge badge-danger float-right ml-1" onclick="return confirm('Yakin?');">
                             hapus
                         </a>
-                        <a href="<?php echo BASEURL; ?>/mahasiswa/hapus/<?php echo $mhs['id']; ?>" class="badge badge-success float-right ml-1 tampilModalUbah"
+                        <a href="<?php echo BASEURL; ?>/mahasiswa/ubah/<?php echo $mhs['id']; ?>" class="badge badge-success float-right ml-1 tampilModalUbah"
                             data-toggle="modal" data-target="#exampleModal" data-id="<?php echo $mhs['id']; ?>">
                             ubah
                         </a>
@@ -43,9 +43,9 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="<?php echo BASEURL; ?>/mahasiswa/tambah" 
-                method="post">
-                <input type="hidden" id="id" name="id">
+                <form action="<?php echo BASEURL; ?>/mahasiswa/tambah"
+                    method="post">
+                    <input type="hidden" id="id" name="id">
                     <div class="form-group">
                         <label for="nama">Nama</label>
                         <input type="text" class="form-control" id="nama" name="nama">

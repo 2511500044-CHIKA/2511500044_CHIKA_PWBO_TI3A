@@ -3,7 +3,7 @@
 
 class Pengembalian_model
 {
-    private $table = '`Pengembalian Buku`';
+    private $table = '2511500044pengembalian';
     private $db;
 
     public function __construct()
@@ -13,22 +13,19 @@ class Pengembalian_model
 
     public function getAllPengembalian()
     {
-        $this->db->query('SELECT * FROM ' . $this->table);
+        $this->db->query('SELECT * FROM `' . $this->table . '`');
         return $this->db->resultSet();
     }
 
     public function getPengembalianById($Kd_kembalian044)
     {
         $this->db->query(
-            'SELECT * FROM ' . $this->table .
-                ' WHERE Kd_kembalian044 = :kode'
+            'SELECT * FROM `' . $this->table . '` WHERE Kd_kembalian044 = :kode'
         );
 
         $this->db->bind('kode', $Kd_kembalian044);
-
         return $this->db->single();
     }
-
     public function tambahDataPengembalian($data)
     {
         $query = "INSERT INTO $this->table

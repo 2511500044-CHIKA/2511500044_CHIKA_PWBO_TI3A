@@ -1,7 +1,7 @@
 <?php
-class Mahasiswa_model
+class Pengembalian_model
 {
-    private $table = 'mahasiswa';
+    private $table = '2511500044pengembalian';
     private $db; // database handler
 
     public function __construct()
@@ -10,41 +10,44 @@ class Mahasiswa_model
         $this->db = new Database;
     }
 
-    public function getAllMahasiswa()
+    public function getAllPengembalian()
     {
         $this->db->query('SELECT * FROM ' . $this->table);
         return $this->db->resultSet();
     }
-    public function getMahasiswaById($id)
+    public function getPengembalianById($id)
     {
-        $this->db->query('SELECT * FROM ' . $this->table . ' WHERE id=:id
+        $this->db->query('SELECT * FROM ' . $this->table . ' WHERE Kd_kembalian044 =:id
             ');
         $this->db->bind('id', $id);
         return $this->db->single();
     }
 
-    public function tambahDataMahasiswa($data)
+    public function tambahDataPengembalian($data)
     {
 
         $query = "INSERT INTO $this->table
-               (nama, nim, email, jurusan)
-               VALUES
-               (:nama, :nim, :email, :jurusan)";
+            (Kd_kembalian044, NimMhs044, NmMhs044, NmBuku044, JumBuku044, TglKembali044, Denda044)
+            VALUES
+            (:kode, :nim, :nama, :buku, :jumlah, :tanggal, :denda)";
 
         $this->db->query($query);
-        $this->db->bind('nama', $data['nama']);
-        $this->db->bind('nim', $data['nim']);
-        $this->db->bind('email', $data['email']);
-        $this->db->bind('jurusan', $data['jurusan']);
+        $this->db->bind('kode', $data['Kd_kembalian044']);
+        $this->db->bind('nim', $data['NimMhs044']);
+        $this->db->bind('nama', $data['NmMhs044']);
+        $this->db->bind('buku', $data['NmBuku044']);
+        $this->db->bind('jumlah', $data['JumBuku044']);
+        $this->db->bind('tanggal', $data['TglKembali044']);
+        $this->db->bind('denda', $data['Denda044']);
 
         $this->db->execute();
 
         return $this->db->rowCount();
     }
 
-    public function hapusDataMahasiswa($id)
+    public function hapusDataPengembalian($id)
     {
-        $query = "DELETE FROM $this->table WHERE id = :id";
+        $query = "DELETE FROM $this->table WHERE Kd_kembalian044  = :id";
         $this->db->query($query);
         $this->db->bind('id', $id);
 
@@ -52,21 +55,25 @@ class Mahasiswa_model
 
         return $this->db->rowCount();
     }
-    public function ubahDataMahasiswa($data)
+    public function ubahDataPengembalian($data)
     {
-        $query = "UPDATE $this->table SET
-            nama = :nama,
-            nim = :nim,
-            email = :email,
-            jurusan = :jurusan
-            WHERE id = :id";
+        $query = "UPDATE `$this->table` SET
+                NimMhs044 = :nim,
+                NmMhs044 = :nama,
+                NmBuku044 = :buku,
+                JumBuku044 = :jumlah,
+                TglKembali044 = :tanggal,
+                Denda044 = :denda
+              WHERE Kd_kembalian044 = :kode";
 
         $this->db->query($query);
-        $this->db->bind('nama', $data['nama']);
-        $this->db->bind('nim', $data['nim']);
-        $this->db->bind('email', $data['email']);
-        $this->db->bind('jurusan', $data['jurusan']);
-        $this->db->bind('id', $data['id']);
+        $this->db->bind('kode', $data['Kd_kembalian044']);
+        $this->db->bind('nim', $data['NimMhs044']);
+        $this->db->bind('nama', $data['NmMhs044']);
+        $this->db->bind('buku', $data['NmBuku044']);
+        $this->db->bind('jumlah', $data['JumBuku044']);
+        $this->db->bind('tanggal', $data['TglKembali044']);
+        $this->db->bind('denda', $data['Denda044']);
 
         $this->db->execute();
 
